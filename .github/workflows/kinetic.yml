@@ -10,6 +10,11 @@ jobs:
         run: |
           cd / && ./ros_entrypoint.sh
           apt-get update
+          apt-get install -y python-pip
+          apt-get install -y ros-kinetic-catkin python-catkin-tools
+          apt-get install -y ros-kinetic-cv-bridge
+          apt-get install -y ros-kinetic-roslint
+          pip install bluerobotics-ping
       - name: Setup catkin workspace
         run: |
           mkdir -p ~/catkin_ws/src
@@ -21,5 +26,3 @@ jobs:
           cd ~/catkin_ws/src
           cp -r $GITHUB_WORKSPACE .
           /bin/bash -c "source ../devel/setup.bash && catkin build"
-      - name: rosmsg list
-        run: rosmsg list
