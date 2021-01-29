@@ -21,5 +21,5 @@ jobs:
           cd ~/catkin_ws/src
           cp -r $GITHUB_WORKSPACE .
           /bin/bash -c "source ../devel/setup.bash && catkin build"
-      - name: Save ros msgs
-        run: rosmsg list > ros_msg_list.txt
+      - name: rosmsg list
+        run: rosmsg list
