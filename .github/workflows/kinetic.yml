@@ -26,3 +26,5 @@ jobs:
           cd ~/catkin_ws/src
           cp -r $GITHUB_WORKSPACE .
           /bin/bash -c "source ../devel/setup.bash && catkin build"
+      - name: rosmsg list
+        run: rosmsg list
