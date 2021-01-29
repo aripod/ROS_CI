@@ -5,16 +5,11 @@ jobs:
     runs-on: ubuntu-16.04
     container: ros:kinetic-ros-base
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: Install catkin & package dependencies
         run: |
           cd / && ./ros_entrypoint.sh
           apt-get update
-          apt-get install -y python-pip
-          apt-get install -y ros-kinetic-catkin python-catkin-tools
-          apt-get install -y ros-kinetic-cv-bridge
-          apt-get install -y ros-kinetic-roslint
-          pip install bluerobotics-ping
       - name: Setup catkin workspace
         run: |
           mkdir -p ~/catkin_ws/src
@@ -26,3 +21,5 @@ jobs:
           cd ~/catkin_ws/src
           cp -r $GITHUB_WORKSPACE .
           /bin/bash -c "source ../devel/setup.bash && catkin build"
+      - name: Save ros msgs
+        run: rosmsg list > ros_msg_list.txt
